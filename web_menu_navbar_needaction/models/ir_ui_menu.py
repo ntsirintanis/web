@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2015-2018 Therp BV <https://therp.nl>
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 import operator
@@ -33,7 +32,7 @@ class IrUiMenu(models.Model):
                 continue
             for menu_id, needaction in self.search(
                     [('id', 'child_of', this.ids)])._filter_visible_menus()\
-                    .get_needaction_data().iteritems():
+                    .get_needaction_data().items():
                 if needaction.get('needaction_from_children'):
                     continue
                 if needaction['needaction_enabled']:
@@ -46,7 +45,7 @@ class IrUiMenu(models.Model):
                     if needaction['needaction_counter'] and not action_menu:
                         action_menu = menu
             result[this.id] = {
-                'count': sum(count_per_model.itervalues()),
+                'count': sum(count_per_model.values()),
             }
             if action_menu:
                 result[this.id].update({
